@@ -9,6 +9,7 @@ pub trait IERC20Token <TContractState> {
     fn approve(ref self: TContractState, spender: ContractAddress, amount: u256) -> bool;
     fn transferFrom(ref self: TContractState, from: ContractAddress, to: ContractAddress, amount: u256) -> bool;
     fn burn(ref self: TContractState, amount: u256) -> bool;
+    fn mint(ref self: TContractState, to: ContractAddress, amount: u256) -> bool;
 }
 
 #[starknet::contract]
@@ -116,5 +117,19 @@ pub mod ERC20Contract {
 
             true
         }
+
+        fn mint(ref self: ContractState, to: ContractAddress, amount: u256) -> bool {
+            assert!(!to.is_zero(), "Invalid to address");
+            assert!(amount > 0, "Mint amount must be greater than zero");
+
+            let balance = self.balances.read(to);
+            self.balances.write(to, balance + amount);
+
+            let current_total_supply = self.total_supply.read();
+            self.total_supply.write(current_total_supply + amount);
+
+            true
+        }
+
     }
 }

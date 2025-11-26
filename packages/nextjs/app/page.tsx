@@ -1,58 +1,48 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ConnectedAddress } from "~~/components/ConnectedAddress";
+import { TotalSupply } from "~~/components/TotalSupply";
+import { BalanceOf } from "~~/components/BalanceOf";
+import { Transfer } from "~~/components/Transfer";
+import { Approve } from "~~/components/Approve";
+import { Allowance } from "~~/components/Allowance";
+import { TransferFrom } from "~~/components/TransferFrom";
+import { Burn } from "~~/components/Burn";
+import { Mint } from "~~/components/Mint";
 
 const Home = () => {
   return (
-    <div className="flex items-center flex-col grow pt-10">
-      <div className="px-5">
-        <h1 className="text-center">
-          <span className="block text-2xl mb-2">Welcome to</span>
-          <span className="block text-4xl font-bold">Scaffold-Stark 2</span>
-        </h1>
-        <ConnectedAddress />
-        <p className="text-center text-lg">
-          Edit your smart contract{" "}
-          <code className="bg-underline italic text-base font-bold max-w-full break-words break-all inline-block">
-            your_contract.cairo
-          </code>{" "}
-          in{" "}
-          <code className="bg-underline italic text-base font-bold max-w-full break-words break-all inline-block">
-            packages/snfoundry/contracts/src
-          </code>
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-base-300 to-base-100">
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+            Hyver Token Token Dashboard
+          </h1>
+          <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
+            Manage your tokens with ease. Transfer, approve, mint, and burn tokens all in one place.
+          </p>
+        </div>
 
-      <div className="bg-container grow w-full mt-16 px-8 py-12">
-        <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-          <div className="flex flex-col bg-base-100 relative text-[12px] px-10 py-10 text-center items-center max-w-xs rounded-3xl border border-gradient">
-            <div className="trapeze"></div>
-            <Image
-              src="/debug-icon.svg"
-              alt="icon"
-              width={26}
-              height={30}
-            ></Image>
-            <p>
-              Tinker with your smart contract using the{" "}
-              <Link href="/debug" passHref className="link">
-                Debug Contracts
-              </Link>{" "}
-              tab.
-            </p>
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          <TotalSupply />
+          <BalanceOf />
+        </div>
+
+        {/* Actions Grid */}
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-semibold text-center mb-8">Token Actions</h2>
+          
+          {/* Primary Actions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <Transfer />
+            <Approve />
+            <Allowance />
           </div>
-          <div className="flex flex-col bg-base-100 relative text-[12px] px-10 py-10 text-center items-center max-w-xs rounded-3xl border border-gradient">
-            <div className="trapeze"></div>
-            <Image
-              src="/explorer-icon.svg"
-              alt="icon"
-              width={20}
-              height={32}
-            ></Image>
-            <p>
-              Play around with Multiwrite transactions using
-              useScaffoldMultiWrite() hook
-            </p>
+
+          {/* Secondary Actions */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <TransferFrom />
+            <Mint />
+            <Burn />
           </div>
         </div>
       </div>

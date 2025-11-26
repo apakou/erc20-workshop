@@ -46,9 +46,12 @@ import { green, red } from "./helpers/colorize-log";
  */
 const deployScript = async (): Promise<void> => {
   await deployContract({
-    contract: "YourContract",
+    contract: "ERC20Contract",
     constructorArgs: {
       owner: deployer.address,
+      name: "Hyver Token",
+      symbol: "HYV",
+      decimals: 18,
     },
   });
 };
