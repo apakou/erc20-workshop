@@ -6,6 +6,7 @@ import { Allowance } from "~~/components/Allowance";
 import { TransferFrom } from "~~/components/TransferFrom";
 import { Burn } from "~~/components/Burn";
 import { Mint } from "~~/components/Mint";
+import { TransferEvents } from "~~/components/TransferEvents";
 
 const Home = () => {
   return (
@@ -39,10 +40,16 @@ const Home = () => {
           </div>
 
           {/* Secondary Actions */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <TransferFrom />
             <Mint />
             <Burn />
+          </div>
+
+          {/* Events Section */}
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-semibold text-center mb-8">Live Transfer Events</h2>
+            <TransferEvents />
           </div>
         </div>
       </div>

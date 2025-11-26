@@ -29,6 +29,21 @@ pub mod ERC20Contract {
         decimals: u8
     }
 
+    #[event]
+    #[derive(Drop, starknet::Event)]
+    pub enum Event {
+        Transfer: Transfer
+    }
+
+    #[derive(Drop, starknet::Event)]
+    struct Transfer {
+        #[key]
+        from: ContractAddress,
+        #[key]
+        to: ContractAddress,
+        value: u256,
+    }
+
     #[constructor]
     fn constructor(
         ref self: ContractState,
@@ -64,6 +79,12 @@ pub mod ERC20Contract {
             self.balances.write(sender, sender_balance - amount);
             let recipient_balance = self.balances.read(to);
             self.balances.write(to, recipient_balance + amount);
+
+            self.emit(Transfer {
+                from: sender,
+                to: to,
+                value: amount,
+            });
 
             true
         }

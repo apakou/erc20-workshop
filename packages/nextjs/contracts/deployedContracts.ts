@@ -7,7 +7,7 @@ const deployedContracts = {
   devnet: {
     ERC20Contract: {
       address:
-        "0x6828a8bd090e8cb1abd4f0926e3d3642e3ffeee4d43b184ca0cbefcaaca2006",
+        "0x6ba4a3e1a01ed4da7f7888d2c6f7018fbaf1dfe44df97b5695d531a1e3facd6",
       abi: [
         {
           type: "impl",
@@ -233,13 +233,41 @@ const deployedContracts = {
         },
         {
           type: "event",
+          name: "contracts::erc20::ERC20Contract::Transfer",
+          kind: "struct",
+          members: [
+            {
+              name: "from",
+              type: "core::starknet::contract_address::ContractAddress",
+              kind: "key",
+            },
+            {
+              name: "to",
+              type: "core::starknet::contract_address::ContractAddress",
+              kind: "key",
+            },
+            {
+              name: "value",
+              type: "core::integer::u256",
+              kind: "data",
+            },
+          ],
+        },
+        {
+          type: "event",
           name: "contracts::erc20::ERC20Contract::Event",
           kind: "enum",
-          variants: [],
+          variants: [
+            {
+              name: "Transfer",
+              type: "contracts::erc20::ERC20Contract::Transfer",
+              kind: "nested",
+            },
+          ],
         },
       ],
       classHash:
-        "0x41044277d7a3ba06ec73c5ac60a083642b2b9fb2304b2534fd6dbfdd62a3ff9",
+        "0x1fac0f03a5cb5f152eaadb24782e20dc6e608112729e5b4e7ccb2ccf0ac440f",
     },
   },
 } as const;
